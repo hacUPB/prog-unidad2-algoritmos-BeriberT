@@ -40,19 +40,13 @@ Inicio
 
 Leer Temp
 
- si
-
-    Est < Crit
+ si Est < Crit
 
     mostrar "Peligro: sobrecalentamiento"
 
  si no
 
-    si
-
-        si 
-
-        Est > Min
+    si Est > Min
 
         mostrar "Motor frío – Calentar antes de operar"
 
@@ -164,21 +158,41 @@ fin
 |----|-----------|
 |Temp|Temperatura medida en cabina|
 |i|Contador de mediciones (cada 5 minutos)|
-|LimSup|Límite superior permitido (27°C)|
-|LimInf|Límite inferior permitido (18°C)|
+
 
 **Valores de salida**
 
 |dato|Descripción|
 |-|-|
 |Mensaje|Indica si se debe activar el sistema de climatización|
-|Reporte|Resumen final de las mediciones realizadas|
 
 **Valores intermedios**
 
 |dato|Descripción|
 |-|-|
-|Activado|Variable que indica si se activó el sistema de climatización|
-|TotalMed|Cantidad total de mediciones realizadas (12 en una hora)|
+|LimSup|Límite superior permitido (27°C)|
+|LimInf|Límite inferior permitido (18°C)|
 
 ---
+
+### pseudocodigo
+
+Inincio 
+
+i = 0
+
+LimSup = 27
+
+Limlnf = 18
+
+Leer Temp
+
+Mientras i >= 12
+
+    Si 18 => Temp <= 27
+    
+    mostrar "active el sistema de climatización"
+
+    fin si 
+
+fin
